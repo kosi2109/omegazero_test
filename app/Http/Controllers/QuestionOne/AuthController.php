@@ -30,9 +30,7 @@ class AuthController extends Controller
     public function store(
         LoginRequest $request
     ) {
-
         if (!Auth::attempt($request->only(['email', 'password']))) {
-
             return redirect()->back()->with('auth_fail', "Wrong User Credential.");
         }
 
