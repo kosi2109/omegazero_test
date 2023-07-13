@@ -27,13 +27,13 @@ Route::name('question-one.')
         
         // Login Route Start ____
         
-        Route::prefix('login')
-            ->controller(LoginController::class)
-            ->name('login.')
-            ->middleware('guest')
+        Route::prefix('auth')
+            ->controller(AuthController::class)
+            ->name('auth.')
             ->group(function () {
-                Route::get('/', 'login')->name('index');
-                Route::post('/', 'store')->name('store');
+                Route::get('/', 'login')->name('index')->middleware('guest');
+                Route::post('/', 'store')->name('store')->middleware('guest');
+                Route::post('/logout', 'logout')->name('logout')->middleware('auth');
             });
 
         // Login Route End ____
@@ -46,35 +46,14 @@ Route::name('question-one.')
             ->middleware('auth')
             ->group(function () {
                 Route::get('/', 'index')->name('index');
-                // Route::post('/', 'store')->name('store');
+                Route::get('/view/{user}', 'view')->name('view')->middleware('can:view_users');
+                Route::get('create', 'create')->name('create')->middleware('can:create_users');
+                Route::post('create', 'store')->name('store')->middleware('can:create_users');
+                Route::get('edit/{user}', 'edit')->name('edit')->middleware('can:edit_users');
+                Route::post('update/{user}', 'update')->name('update')->middleware('can:view_users');
+                Route::get('destroy/{user}', 'delete')->name('delete')->middleware('can:delete_users');
+                Route::delete('destroy/{user}', 'destroy')->name('destroy')->middleware('can:delete_users');
         });
 
         // Dashboard Route Start ____
-
-        // Roles Route Start ____
-
-        Route::prefix('roles')
-            ->controller(RoleController::class)
-            ->name('roles.')
-            ->middleware('auth')
-            ->group(function () {
-                Route::get('/', 'index')->name('index');
-                // Route::post('/', 'store')->name('store');
-        });
-
-        // Roles Route Start ____
-        
-        // Permissions Route Start ____
-
-        Route::prefix('permissions')
-            ->controller(PermissionController::class)
-            ->name('permissions.')
-            ->middleware('auth')
-            ->group(function () {
-                Route::get('/', 'index')->name('index');
-                // Route::post('/', 'store')->name('store');
-        });
-
-        // Permissions Route Start ____
-        
     });

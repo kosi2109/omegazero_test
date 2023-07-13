@@ -7,13 +7,13 @@ use App\Http\Requests\QuestionOne\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
     /** @var $view */
     private $view = 'pages.question-one.';
     
     /** @var $route */
-    private $route = 'question-one.login';
+    private $route = 'question-one.auth.';
     
     /**
      * Login View Controller For Question One
@@ -24,6 +24,8 @@ class LoginController extends Controller
 
     /**
      * Login Store Controller For Question One
+     * 
+     * @param LoginRequest $request
      */
     public function store(
         LoginRequest $request
@@ -34,6 +36,15 @@ class LoginController extends Controller
             return redirect()->back()->with('auth_fail', "Wrong User Credential.");
         }
 
-        return redirect()->route($this->view . 'dashboard.index');
+        return redirect()->route('question-one.users.index');
+    }
+
+    /**
+     * Logout
+     */
+    public function logout() {
+        auth()->logout();
+
+        return redirect()->route($this->route . 'index');
     }
 }

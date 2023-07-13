@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -46,8 +47,26 @@ class User extends Authenticatable
     /**
      * Bcrypt Password
      */
-    protected function setPasswordAttribute ($value) 
+    protected function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    /**
+     * Filter Model for User
+     */
+    public function scopeFilter($query, $filter)
+    {
+        $query->when($filter["name"] ?? false, function ($query, $name) {
+            $query->where('name', 'LIKE', '%' . $name . '%');
+        });
+        $query->when($filter["department_name"] ?? false, function ($query, $dep_name) {
+            $query->where('department_name', $dep_name);
+        });
+        $query->when($filter["role"] ?? false, function ($query, $role) {
+            $query->whereHas('roles', function ($q) use ($role) {
+                $q->where('name', $role);
+            });
+        });
     }
 }

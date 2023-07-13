@@ -1,7 +1,7 @@
 <x-layouts.app title="Home">
     <div class="d-flex flex-column justify-content-center align-items-center pt-5">
-        <div class="w-50 shadow-lg p-3 mt-5">
-            <form method="POST" action="{{route('question-one.login.store')}}">
+        <div class="w-50 shadow p-3 mt-5">
+            <form method="POST" action="{{route('question-one.auth.store')}}">
                 @csrf
                 <h1 class="mb-3 text-center">Login</h1>
                 <div class="row mb-3">

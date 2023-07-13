@@ -4,14 +4,6 @@
             [
                 'name' => 'Users',
                 'route' => route('question-one.users.index')
-            ],
-            [
-                'name' => 'Roles',
-                'route' => route('question-one.roles.index')
-            ],
-            [
-                'name' => 'Permissions',
-                'route' => route('question-one.permissions.index')
             ]
         ]"
     ></x-partials.nav>

@@ -1,14 +1,14 @@
 @props([
-    'tableTitle',
     'columnNames' => [],
     'data' => [],
     'keys' => [],
     'canDelete' => false,
     'canUpdate' => false,
     'canView' => false,
+    'perPage' => 10,
+    'currentPage' => 1,
+    'route'
 ])
-
-<h1 class="my-5">{{$tableTitle}}</h1>
 
 <table class="table">
     <thead>
@@ -23,14 +23,24 @@
     <tbody>
         @foreach ($data as $num => $item)
         <tr>
-          <th scope="row">{{$num}}</th>
+          <th scope="row">{{($perPage * ($currentPage - 1)) + ($num + 1)}}</th>
           @foreach ($keys as $key)
-            <td>{{$item[$key]}}</td>
+            @if ($key == 'roles')
+              <td>{{$item[$key]->pluck('name')->join(',')}}</td>
+            @else
+              <td>{{$item[$key]}}</td>
+            @endif
           @endforeach
           <td class="text-end">
-            <button class="btn btn-outline btn-primary">View</button>
-            <button class="btn btn-outline btn-warning">Edit</button>
-            <button class="btn btn-outline btn-danger">Delete</button>
+            @can ($canView)
+              <a href="{{route($route . 'view', $item->id)}}" class="btn btn-outline btn-primary">View</a>
+            @endif
+            @can ($canUpdate)
+              <a href="{{route($route . 'edit', $item->id)}}" class="btn btn-outline btn-warning">Edit</a>
+            @endif
+            @can ($canDelete)
+              <a href="{{route($route . 'delete', $item->id)}}" class="btn btn-outline btn-danger">Delete</a>
+            @endif
           </td>
         </tr>
         @endforeach
