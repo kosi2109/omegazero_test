@@ -40,6 +40,7 @@
         <h4>Make:</h4>
         <ul>
             <li>Please run artisan queue:listen or queue:work</li>
+            <li>Add you own mail configuration.</li>
         </ul>
     </div>
     <div>

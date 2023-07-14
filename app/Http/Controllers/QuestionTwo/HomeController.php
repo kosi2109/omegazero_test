@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function mailSend(MailSendRequest $request)
     {
         $user = User::where('email', $request->email)->first();
-        
+
         Mail::to($user)->queue(new UserNotifyMail($request->all()));
 
         return redirect()->back()->with('success', "Mail is sending in the background.");

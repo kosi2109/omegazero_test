@@ -19,14 +19,14 @@ Route::name('question-one.')
 
         // Home Route Start ______
 
-        Route::get('/', function() {
+        Route::get('/', function () {
             return view('pages.question-one.home');
         })->name('home');
 
         // Home Route End ______
-        
+
         // Login Route Start ____
-        
+
         Route::prefix('auth')
             ->controller(AuthController::class)
             ->name('auth.')
@@ -53,7 +53,7 @@ Route::name('question-one.')
                 Route::post('update/{user}', 'update')->name('update')->middleware('can:view_users');
                 Route::get('destroy/{user}', 'delete')->name('delete')->middleware('can:delete_users');
                 Route::delete('destroy/{user}', 'destroy')->name('destroy')->middleware('can:delete_users');
-        });
+            });
 
         // Dashboard Route Start ____
     });

@@ -27,12 +27,12 @@ class UserController extends Controller
         $request = request()->all();
 
         $users = User::filter($request)
-                    ->with('roles')
-                    ->orderBy('created_at', 'desc')
-                    ->select(['id', 'name', 'email', 'department_name'])
-                    ->paginate(request()->get('per_page', 10))
-                    ->withQueryString();
-        
+            ->with('roles')
+            ->orderBy('created_at', 'desc')
+            ->select(['id', 'name', 'email', 'department_name'])
+            ->paginate(request()->get('per_page', 10))
+            ->withQueryString();
+
         if (isset($request['export']) && $request['export'] == true) {
             return Excel::download(new UsersExport($users), now()->format('Ymdhms') . '.csv');
         }
@@ -109,8 +109,8 @@ class UserController extends Controller
      * @param User $user
      */
     public function update(UserUpdateRequest $request, User $user)
-    {   
-        $user = DB::transaction(function () use($request, $user) {
+    {
+        $user = DB::transaction(function () use ($request, $user) {
             $user->update($request->all());
 
             if ($request->get('role')) {

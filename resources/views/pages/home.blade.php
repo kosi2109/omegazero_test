@@ -7,7 +7,7 @@
             <li><a class="text-danger" href="{{route('question-one.home')}}">Answer 1</a></li>
             <li><a class="text-danger" href="{{route('question-two.home')}}">Answer 2</a></li>
             <li><a class="text-danger" href="{{route('question-three.home')}}">Answer 3</a></li>
-            <li><a class="text-danger" href="{{route('question-four')}}">Answer 4</a></li>
+            <li><a class="text-danger" href="{{route('question-four.home')}}">Answer 4</a></li>
         </ul>
     </div>
 </x-layouts.app>

@@ -56,7 +56,7 @@
                 
                 <tr class="bg-secondary text-white fw-bold fs-4">
                     <td colspan="3">Grand Total</td>
-                    <td class="text-end {{$grand_total > 0 ? 'text-success' : 'text-danger' }}">{{$grand_total}}</td>
+                    <td class="text-end">{{$grand_total}}</td>
                 </tr>
             </tbody>
         </table>
