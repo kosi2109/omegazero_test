@@ -1,9 +1,8 @@
 <x-layouts.app title="Home">
-    <div class="d-flex flex-column justify-content-center align-items-center mt-5">
-        <h1>Hello <span class="text-primary">OmegaZero Team</span></h1>
-        <h2>I'm Si Thu Htet and here is my Question 1 result</h2>
+    <x-partials.introduce number='1' />
 
-        <a href="{{route('question-one.auth.index')}}" class="btn btn-primary">Start From Here</a>
+    <div class="d-flex justify-content-center">
+        <a href="{{route('question-one.auth.index')}}" class="btn btn-primary">You Can Start From Here</a>
     </div>
 
     <div class="text-start mt-5">

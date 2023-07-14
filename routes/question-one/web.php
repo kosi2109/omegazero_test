@@ -31,7 +31,7 @@ Route::name('question-one.')
             ->controller(AuthController::class)
             ->name('auth.')
             ->group(function () {
-                Route::get('/', 'login')->name('index')->middleware('guest');
+                Route::get('/login', 'login')->name('index')->middleware('guest');
                 Route::post('/', 'store')->name('store')->middleware('guest');
                 Route::post('/logout', 'logout')->name('logout')->middleware('auth');
             });
