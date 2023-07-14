@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('question-three');
+Route::name('question-two.')
+    ->namespace('App\Http\Controllers\QuestionThree')
+    ->controller('HomeController')
+    ->group(function () {
+        Route::get('/', 'index')->name('home');
+    });

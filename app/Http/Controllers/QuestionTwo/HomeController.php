@@ -29,6 +29,6 @@ class HomeController extends Controller
         
         Mail::to($user)->queue(new UserNotifyMail($request->all()));
 
-        return redirect()->back()->with('success', "Mail is send in the background.");
+        return redirect()->back()->with('success', "Mail is sending in the background.");
     }
 }

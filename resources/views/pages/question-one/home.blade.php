@@ -29,6 +29,7 @@
             <li>Validation & Pagination : You can found validation in Login form, user create and update form.Pagination is mentioned in above.</li>
             <li>Eloquent and Relation : I use eloquent relation in user model under scope method(user to role relation). And I also use mutator and scope filer in model.</li>
             <li>Assign Admin can do CRUD : I created two roles, Admin and Employee(You can find in DatabaseSeeder.php).Also Create 4 permissions for user CRUD(You can find in DatabaseSeeder.php). I assigned these 4 permission to Admin role. User can CRUD by assigning Admin role. <span class="text-danger">I don't make CRUD for these roles and permission because it is just CURD operation.</span></li>
+            <li class="text-warning">Bonous : I make reusable table component to make CRUD operation on permissions.</li>
         </ul>
     </div>
 </x-layouts.app>

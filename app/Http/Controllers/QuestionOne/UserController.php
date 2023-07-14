@@ -5,10 +5,8 @@ namespace App\Http\Controllers\QuestionOne;
 use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\QuestionOne\User\UserCreateRequest;
-use App\Http\Requests\QuestionOne\User\UserDeleteRequest;
 use App\Http\Requests\QuestionOne\User\UserUpdateRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Excel;
@@ -36,7 +34,7 @@ class UserController extends Controller
                     ->withQueryString();
         
         if (isset($request['export']) && $request['export'] == true) {
-            return Excel::download(new UsersExport($users), now()->format('Ymdhms') . '.xlsx');
+            return Excel::download(new UsersExport($users), now()->format('Ymdhms') . '.csv');
         }
 
         return view($this->view . 'index', [
