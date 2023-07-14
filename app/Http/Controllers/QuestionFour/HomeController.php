@@ -32,7 +32,7 @@ class HomeController extends Controller
     {
         $social = Socialite::driver('facebook')->user();
 
-        // Graph Api Call to facebook use access token 
+        // Call to Facebook Graph Api using access token 
         $res = Http::get(
             'https://graph.facebook.com/v17.0/me',
             [

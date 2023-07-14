@@ -3,7 +3,9 @@
     <div class="shadow p-3 my-5">
         <div class="d-flex justify-content-between align-items-center">
             <h1 class="mb-5">Users</h1>
+            @can('create_users')
             <a href="{{route('question-one.users.create')}}" class="btn btn-outline btn-primary">Create User</a>
+            @endcan
         </div>
 
         <div class="mb-3">
@@ -21,6 +23,7 @@
             <form method="GET" class="row">
                 <div class="col-md-3">
                     <div>
+                        <input name="page" type="hidden" value="{{request('page')}}" class="form-control">
                         <input name="name" type="text" value="{{request('name')}}" class="form-control" id="name_input" placeholder="Name">
                     </div>
                 </div>

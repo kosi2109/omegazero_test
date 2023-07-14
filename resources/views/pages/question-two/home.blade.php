@@ -48,7 +48,7 @@
         <h4>Description:</h4>
         <ul>
             <li>Set Multiple Email Address : You can use email from users table that migrated in question 1.</li>
-            <li>Validation : Validate for required all field and check that email is exist in data.</li>
+            <li>Validation : Validate for required all field and check that email exists in database users table.</li>
             <li>Queue : I use queue job to send mail in order to reduce network traffic and Server Load.</li>
         </ul>
     </div>

@@ -32,7 +32,7 @@ class UserController extends Controller
             ->select(['id', 'name', 'email', 'department_name'])
             ->paginate(request()->get('per_page', 10))
             ->withQueryString();
-
+        
         if (isset($request['export']) && $request['export'] == true) {
             return Excel::download(new UsersExport($users), now()->format('Ymdhms') . '.csv');
         }
@@ -49,8 +49,9 @@ class UserController extends Controller
      * 
      * @param User $user
      */
-    public function view(User $user)
-    {
+    public function view(
+        User $user
+    ) {
         return view($this->view . 'view', [
             'user' => $user
         ]);
@@ -58,7 +59,6 @@ class UserController extends Controller
 
     /**
      * Create User View Controller
-     * 
      */
     public function create()
     {
@@ -72,8 +72,9 @@ class UserController extends Controller
      * 
      * @param UserCreateRequest $request
      */
-    public function store(UserCreateRequest $request)
-    {
+    public function store(
+        UserCreateRequest $request
+    ) {
         $user = DB::transaction(function () use ($request) {
             $user = User::create($request->all());
 
@@ -94,8 +95,9 @@ class UserController extends Controller
      * 
      * @param User $user
      */
-    public function edit(User $user)
-    {
+    public function edit(
+        User $user
+    ) {
         return view($this->view . 'edit', [
             'roles' => Role::all('name'),
             'user' => $user
@@ -108,8 +110,10 @@ class UserController extends Controller
      * @param UserUpdateRequest $request
      * @param User $user
      */
-    public function update(UserUpdateRequest $request, User $user)
-    {
+    public function update(
+        UserUpdateRequest $request,
+        User $user
+    ) {
         $user = DB::transaction(function () use ($request, $user) {
             $user->update($request->all());
 
@@ -130,8 +134,9 @@ class UserController extends Controller
      * 
      * @param User $user
      */
-    public function delete(User $user)
-    {
+    public function delete(
+        User $user
+    ) {
         return view($this->view . 'delete', [
             'user' => $user
         ]);

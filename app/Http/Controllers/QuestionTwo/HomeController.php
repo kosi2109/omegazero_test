@@ -23,8 +23,9 @@ class HomeController extends Controller
      * 
      * @param MailSendRequest $request
      */
-    public function mailSend(MailSendRequest $request)
-    {
+    public function mailSend(
+        MailSendRequest $request
+    ) {
         $user = User::where('email', $request->email)->first();
 
         Mail::to($user)->queue(new UserNotifyMail($request->all()));
